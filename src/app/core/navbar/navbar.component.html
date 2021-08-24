@@ -1,0 +1,7 @@
+<nav mat-tab-nav-bar [color]="color" [backgroundColor]="color" mat-align-tabs="center">
+    <a mat-tab-link *ngFor="let menu of menus"          
+    (click)="route(menu)" 
+    [active]="activeMenu == menu">
+        {{menu.name}}
+    </a>
+</nav>
