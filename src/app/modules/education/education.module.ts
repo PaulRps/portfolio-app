@@ -1,24 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { TitleComponent } from './components/title/title.component';
+import { EducationComponent } from './components/education/education.component';
 import { EducationRoutingModule } from './education-routing.module';
 import { EducationPageComponent } from './page/education-page.component';
-
 
 
 @NgModule({
   declarations: [
     EducationPageComponent,
-    TitleComponent
+    EducationComponent
   ],
   imports: [
     CommonModule,
     EducationRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     EducationPageComponent
-  ]
+  ],
 })
 export class EducationModule { }

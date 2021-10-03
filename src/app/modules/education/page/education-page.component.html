@@ -1,4 +1,4 @@
-<div class="flex justify-center pt-8">
+<!-- <div class="flex justify-center pt-8">
     <div class="border-l-4 border-current -left-0.5">
         <div class="flex flex-row pl-8 pb-2" *ngFor="let title of titles">
             <div class="rounded-full h-6 w-6 border-2 relative z-10 bg-current bg-opacity-100" style="right: 46px;">
@@ -8,4 +8,19 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<mat-stepper orientation="vertical">
+    <div *ngFor="let title of titles">
+        <mat-step [editable]="true" [completed]="true" label="{{title?.name}}">
+            <app-education class="" [title]="title"></app-education>
+        </mat-step>
+    </div>
+
+    <ng-template matStepperIcon="edit">
+        <mat-icon>school</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="number">
+        <mat-icon>school</mat-icon>
+    </ng-template>
+</mat-stepper>

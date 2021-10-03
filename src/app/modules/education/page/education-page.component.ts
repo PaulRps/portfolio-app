@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from 'src/app/shared/models/dto/title.dto';
+import { Education } from 'src/app/shared/models/dto/education.dto';
 import { EducationService } from '../education.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { EducationService } from '../education.service';
 })
 export class EducationPageComponent implements OnInit {
 
-  titles?: Title[]
+  titles?: Education[]
 
   constructor(private educationService: EducationService) { }
 

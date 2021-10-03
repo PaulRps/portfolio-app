@@ -1,7 +1,10 @@
+import { Company } from "./company.dto";
+
 export interface JobExperience {
-    company: string
+    company: Company
     role: string
-    beginDate: string
-    endDate: string
-    description: string
+    beginAt: string
+    endAt: string
+    description: string[]
+    squad: string
 }

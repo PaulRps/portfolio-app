@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <div class="flex flex-nowrap">
+                <div>
+                    {{project?.name}}
+                </div>
+                <div class="pl-2" *ngIf="project?.url">
+                    <a href="{{project?.url}}" target="_blank">
+                        <mat-icon>link</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{project?.isFork ? 'Forked' : project?.owner}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="pl-4">
+        <p>
+            {{project?.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="pl-8">
+            <mat-chip-list>
+                <mat-chip class="text-xs" *ngFor="let tech of project?.technologies" color="accent" selected>
+                    {{tech}}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </mat-card-actions>
+    <!-- <mat-card-footer>
+        <div class="pl-8">
+            <mat-chip-list>
+                <mat-chip class="text-xs" *ngFor="let tech of project?.technologies" color="accent" selected>
+                    {{tech}}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </mat-card-footer> -->
+</mat-card>

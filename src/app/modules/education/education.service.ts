@@ -1,24 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Title } from 'src/app/shared/models/dto/title.dto';
+import { Education } from 'src/app/shared/models/dto/education.dto';
+import { environment } from 'src/environments/environment';
+
+const API_URL = `${environment.apiUrl}/education`
 
 @Injectable({
   providedIn: 'root'
 })
 export class EducationService {
 
-  constructor() { }
+  constructor(private readonly http: HttpClient) { }
 
-  getTitles(): Observable<Title[]> {
-    return new Observable(observer => {
-      observer.next([
-        { name: 'UFPB', institution: 'Msc Computer Scienci', beginDate: 'dez 2020', endDate: 'current', description: 'saflasdf  asdlfjaslf asf ladsfjasfjldsfjds as fljds' },
-        { name: 'UFPB', institution: 'Msc Computer Scienci', beginDate: 'dez 2020', endDate: 'current', description: 'saflasdf  asdlfjaslf asf ladsfjasfjldsfjds as fljds' },
-        { name: 'UFPB', institution: 'Msc Computer Scienci', beginDate: 'dez 2020', endDate: 'current', description: 'saflasdf  asdlfjaslf asf ladsfjasfjldsfjds as fljds' },
-        { name: 'UFPB', institution: 'Msc Computer Scienci', beginDate: 'dez 2020', endDate: 'current', description: 'saflasdf  asdlfjaslf asf ladsfjasfjldsfjds as fljds' },
-        { name: 'UFPB', institution: 'Msc Computer Scienci', beginDate: 'dez 2020', endDate: 'current', description: 'saflasdf  asdlfjaslf asf ladsfjasfjldsfjds as fljds' },
-      ])
-      observer.complete()
-    })
+  getTitles(): Observable<Education[]> {
+    return this.http.get<Education[]>(API_URL)
   }
 }

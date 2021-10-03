@@ -1,0 +1,17 @@
+<mat-card>
+  <div class="grid grid-cols-2 gap-4">
+    <mat-card-header>
+      <mat-card-title>{{title?.institution?.name}}</mat-card-title>
+      <mat-card-subtitle>{{title?.beginAt}} - {{title?.endAt}}</mat-card-subtitle>
+    </mat-card-header>
+  </div>
+  <mat-card-content class="pl-4">
+    <p>
+      {{title?.description}}
+    </p>
+  </mat-card-content>
+  <!-- <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+</mat-card>

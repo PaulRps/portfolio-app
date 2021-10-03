@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomePageComponent } from './page/home-page.component';
+import { AboutRoutingModule } from './about-routing.module';
+import { AboutPageComponent } from './page/about-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DownloadResumeComponent } from './components/download-resume/download-resume.component';
 import { SocialMediasComponent } from './components/social-medias/social-medias.component';
@@ -10,19 +10,19 @@ import { SocialMediasComponent } from './components/social-medias/social-medias.
 
 @NgModule({
   declarations: [
-    HomePageComponent,
+    AboutPageComponent,
     DownloadResumeComponent,
     SocialMediasComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    AboutRoutingModule,
     SharedModule
   ],
   exports: [
-    HomePageComponent,
+    AboutPageComponent,
     DownloadResumeComponent,
     SocialMediasComponent
   ]
 })
-export class HomeModule { }
+export class AboutModule { }

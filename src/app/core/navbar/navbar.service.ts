@@ -12,7 +12,7 @@ export class NavbarService {
   getMenus(): Observable<MenuDto[]> {
     return new Observable(observer => {
       observer.next([
-        { name: 'Home', route: '/home' },
+        { name: 'About', route: '/about' },
         { name: 'Experience', route: '/experience' },
         { name: 'Education', route: '/education' },
         { name: 'Projects', route: '/projects' },
