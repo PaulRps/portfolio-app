@@ -1,5 +1,7 @@
 # PortfolioApp
 
+An Angular Web application to display my professional skills and experiences. It hosted in Netflify and it consumes a NestJs REST API portfolio-api hosted in Heroku Platform.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
 ## Development server
