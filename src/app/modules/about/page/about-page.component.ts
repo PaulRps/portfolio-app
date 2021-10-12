@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AboutDto } from 'src/app/shared/models/dto/about.dto';
+import { AboutService } from '../about.service';
 
 @Component({
   selector: 'app-about-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPageComponent implements OnInit {
 
-  constructor() { }
+  about?: AboutDto
+
+  constructor(
+    private readonly aboutService: AboutService
+  ) { }
 
   ngOnInit(): void {
+    this.aboutService.getAbout().subscribe(about => this.about = about)
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AboutDto } from 'src/app/shared/models/dto/about.dto';
 
 @Component({
   selector: 'app-social-medias',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialMediasComponent implements OnInit {
 
+  @Input() profile?: AboutDto;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.profile);
+    
   }
 
 }
+
