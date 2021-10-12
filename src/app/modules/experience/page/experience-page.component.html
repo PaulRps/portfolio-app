@@ -1,4 +1,4 @@
-<mat-stepper orientation="vertical">
+<mat-stepper orientation="vertical" *ngIf="jobExperiences">
   <div *ngFor="let jobExperience of jobExperiences">
     <mat-step [editable]="true" [completed]="true" label="{{jobExperience?.company?.name}}">
       <app-job class="" [jobExperience]="jobExperience"></app-job>

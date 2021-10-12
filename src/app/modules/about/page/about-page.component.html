@@ -1,5 +1,5 @@
 <div class="flex h-screen">
-    <div class="m-auto">
+    <div class="m-auto" *ngIf="about">
         <p class="text-center text-5xl">Hello!</p>
         <p class="text-center text-4xl accent-color">I am {{about?.shortName}}</p>
         <p class="text-center text-6xl">{{about?.jobPosition}}</p>

@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
@@ -21,7 +22,8 @@ const components = [
   MatCardModule,
   MatStepperModule,
   MatChipsModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
