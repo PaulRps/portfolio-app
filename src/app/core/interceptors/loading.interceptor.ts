@@ -22,8 +22,6 @@ export class LoadingInterceptor implements HttpInterceptor {
 
     this.requests.push(req);
 
-    console.log("No of requests--->" + this.requests.length);
-
     this.loadingService.isLoading.next(true);
     return new Observable(observer => {
       const subscription = next.handle(req)

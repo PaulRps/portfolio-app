@@ -12,8 +12,7 @@ export class SocialMediasComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.profile);
+  ngOnInit(): void {    
     
   }
 
