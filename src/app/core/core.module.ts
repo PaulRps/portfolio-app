@@ -6,13 +6,15 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { LoadingService } from './loading-screen/loading.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FilterProjectsPipe } from './pipes/filter/filter-projects.pipe';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    LoadingScreenComponent
+    LoadingScreenComponent,
+    FilterProjectsPipe
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   exports: [
     NavbarComponent,
-    LoadingScreenComponent
+    LoadingScreenComponent,
+    FilterProjectsPipe
   ],
   providers: [
     LoadingService,

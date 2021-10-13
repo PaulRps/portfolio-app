@@ -1,3 +1,19 @@
-<div class="py-2" *ngFor="let project of projects">
+<div class="pt-6 w-full flex flex-row-reverse">
+    <div>
+        <button mat-icon-button aria-label="restore project list button" title="refresh project list" (click)="restore()">
+            <mat-icon>sync</mat-icon>
+        </button>
+    </div>
+    <div>
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Search technology</mat-label>
+            <input matInput type="text" [(ngModel)]="searchText">
+            <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</div>
+<div class="py-2" *ngFor="let project of projects | filter:searchText">
     <app-project [project]="project"></app-project>
 </div>

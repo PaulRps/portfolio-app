@@ -9,11 +9,17 @@ import { ProjectsService } from '../projects.service';
 })
 export class ProjectsPageComponent implements OnInit {
 
-  projects?: Project[]
+  projects: Project[] = []
+  searchText?: string
 
   constructor(private projectService: ProjectsService) { }
 
   ngOnInit(): void {
+    this.projectService.getProjects().subscribe(projects => this.projects = projects)
+  }
+
+  restore() {
+    this.projects = []
     this.projectService.getProjects().subscribe(projects => this.projects = projects)
   }
 
