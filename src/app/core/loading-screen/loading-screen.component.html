@@ -1,5 +1,4 @@
-<div class="flex h-screen" *ngIf="isLoading">
-    <div class="m-auto">
-        <mat-spinner></mat-spinner>
-    </div>
-</div>
+<ng-container *ngIf="isLoading | async">
+  <div class="overlay"></div>
+  <mat-spinner></mat-spinner>
+</ng-container>
