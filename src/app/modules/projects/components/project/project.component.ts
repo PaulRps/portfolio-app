@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Project } from 'src/app/shared/models/dto/project.dto';
+import {Component, Input, OnInit} from '@angular/core'
+import {Project} from 'src/app/shared/models/dto/project.dto'
 
 @Component({
   selector: 'app-project',
@@ -7,12 +7,9 @@ import { Project } from 'src/app/shared/models/dto/project.dto';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-
   @Input() project?: Project
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

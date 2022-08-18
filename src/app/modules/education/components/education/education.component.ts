@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Education } from 'src/app/shared/models/dto/education.dto';
+import {Component, Input, OnInit} from '@angular/core'
+import {Education} from 'src/app/shared/models/dto/education.dto'
 
 @Component({
   selector: 'app-education',
@@ -7,12 +7,9 @@ import { Education } from 'src/app/shared/models/dto/education.dto';
   styleUrls: ['./education.component.scss']
 })
 export class EducationComponent implements OnInit {
+  @Input() title?: Education
 
-  @Input() title?: Education;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

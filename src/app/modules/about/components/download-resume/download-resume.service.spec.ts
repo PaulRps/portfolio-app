@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing'
 
-import { DownloadResumeService } from './download-resume.service';
+import {DownloadResumeService} from './download-resume.service'
 
 describe('DownloadResumeService', () => {
-  let service: DownloadResumeService;
+  let service: DownloadResumeService
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DownloadResumeService);
-  });
+    TestBed.configureTestingModule({})
+    service = TestBed.inject(DownloadResumeService)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})

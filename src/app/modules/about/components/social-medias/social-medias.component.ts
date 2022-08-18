@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AboutDto } from 'src/app/shared/models/dto/about.dto';
+import {Component, Input, OnInit} from '@angular/core'
+import {AboutDto} from 'src/app/shared/models/dto/about.dto'
 
 @Component({
   selector: 'app-social-medias',
@@ -7,14 +7,9 @@ import { AboutDto } from 'src/app/shared/models/dto/about.dto';
   styleUrls: ['./social-medias.component.scss']
 })
 export class SocialMediasComponent implements OnInit {
+  @Input() profile?: AboutDto
 
-  @Input() profile?: AboutDto;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {    
-    
-  }
-
+  ngOnInit(): void {}
 }
-

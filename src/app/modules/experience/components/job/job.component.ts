@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { JobExperience } from 'src/app/shared/models/dto/job-experience.dto';
+import {Component, Input, OnInit} from '@angular/core'
+import {JobExperience} from 'src/app/shared/models/dto/job-experience.dto'
 
 @Component({
   selector: 'app-job',
@@ -7,12 +7,9 @@ import { JobExperience } from 'src/app/shared/models/dto/job-experience.dto';
   styleUrls: ['./job.component.scss']
 })
 export class JobComponent implements OnInit {
+  @Input() jobExperience?: JobExperience
 
-  @Input() jobExperience?: JobExperience;
-  
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
