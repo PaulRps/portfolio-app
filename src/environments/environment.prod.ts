@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://paulrps-api.herokuapp.com/api/v1'
+  apiUrl: 'https://portfolio-api-qxbb.onrender.com/api/v1'
 }
