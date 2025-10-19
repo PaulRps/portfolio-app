@@ -11,5 +11,18 @@ export class JobComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.jobExperience)
+  }
+
+  formatJobTitle(): string {
+    if (!this.jobExperience) {
+      return ''
+    }
+    const companyName = this.jobExperience.company?.name || ''
+    const squad = this.jobExperience.squad
+      ? `in ${this.jobExperience.squad}`
+      : ''
+    return `${this.jobExperience.role} ${squad}`
+  }
 }

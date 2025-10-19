@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {AboutDto} from 'src/app/shared/models/dto/about.dto'
-import {AboutService} from '../about.service'
+import {AboutService} from '../../about.service'
 
 @Component({
   selector: 'app-about-page',

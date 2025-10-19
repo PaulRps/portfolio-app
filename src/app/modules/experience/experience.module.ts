@@ -9,6 +9,6 @@ import {JobComponent} from './components/job/job.component'
 @NgModule({
   declarations: [ExperiencePageComponent, JobComponent],
   imports: [CommonModule, ExperienceRoutingModule, SharedModule],
-  exports: [ExperiencePageComponent]
+  exports: [ExperiencePageComponent, JobComponent]
 })
 export class ExperienceModule {}

@@ -4,6 +4,8 @@ import {Observable} from 'rxjs'
 import {map} from 'rxjs/operators'
 import {AboutDto} from 'src/app/shared/models/dto/about.dto'
 import {environment} from 'src/environments/environment'
+import {JobExperience} from '../../shared/models/dto/job-experience.dto'
+import {Education} from '../../shared/models/dto/education.dto'
 
 const API_URL = `${environment.apiUrl}/about`
 
@@ -23,5 +25,21 @@ export class AboutService {
 
   getAbout(): Observable<AboutDto> {
     return this.http.get<AboutDto>(API_URL)
+  }
+
+  buildResume(body?: {
+    experiences: JobExperience[]
+    education: Education[]
+    technologies: string[]
+    interests: string[]
+    projects: string[]
+  }): Observable<Blob> {
+    return this.http
+      .post(`${API_URL}/resume/build`, body, {responseType: 'blob'})
+      .pipe(
+        map((resume: any) => {
+          return new Blob([resume], {type: 'application/pdf'})
+        })
+      )
   }
 }

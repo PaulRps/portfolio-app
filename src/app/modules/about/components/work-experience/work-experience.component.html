@@ -1,0 +1,93 @@
+<div class="flex flex-wrap">
+  <div class="w-full md:w-1/2 p-4">
+    <div [formGroup]="formGroup">
+      <div class="flex flex-col">
+        <mat-form-field appearance="fill">
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="role" placeholder="Role" required />
+        </mat-form-field>
+
+        <div formGroupName="company">
+          <mat-form-field appearance="fill">
+            <mat-label>Company</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Company"
+              required
+            />
+          </mat-form-field>
+          <div formGroupName="location" class="grid grid-cols-2 gap-2">
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" placeholder="City" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Country</mat-label>
+              <input matInput formControlName="country" placeholder="Country" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Begin At</mat-label>
+            <input matInput formControlName="beginAt" placeholder="YYYY" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>End At</mat-label>
+            <input
+              matInput
+              formControlName="endAt"
+              placeholder="YYYY or Present"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Squad</mat-label>
+          <input
+            matInput
+            formControlName="squad"
+            placeholder="Squad"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="w-full flex flex-col" formArrayName="description">
+        <div
+          class="w-full"
+          *ngFor="let ctrl of description.controls; let i = index"
+        >
+          <div class="flex items-center gap-2">
+            <mat-form-field class="flex-1" appearance="fill">
+              <mat-label>Description</mat-label>
+              <input matInput [formControlName]="i" placeholder="Description" />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              color="warn"
+              type="button"
+              (click)="removeDescription(i)"
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="mt-2">
+          <button mat-button type="button" (click)="addDescription()">
+            Add description
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 p-4">
+    <h2 class="text-xl font-bold mb-2">
+      {{ formatPreviewTitle() }}
+    </h2>
+    <app-job [jobExperience]="preview"></app-job>
+  </div>
+</div>
