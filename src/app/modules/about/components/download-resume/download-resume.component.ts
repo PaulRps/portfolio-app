@@ -29,10 +29,11 @@ export class DownloadResumeComponent {
   }
 
   private toastMessage(msg: string) {
-    this.snackBar.open(msg, 'close', {
+    this.snackBar.open(msg, 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: 10 * 1000
+      duration: 10 * 1000,
+      panelClass: ['app-snackbar']
     })
   }
 }

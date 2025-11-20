@@ -12,7 +12,7 @@ export class JobComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.jobExperience)
+    // console.log(this.jobExperience)
   }
 
   formatJobTitle(): string {

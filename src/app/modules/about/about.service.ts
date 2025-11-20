@@ -6,6 +6,7 @@ import {AboutDto} from 'src/app/shared/models/dto/about.dto'
 import {environment} from 'src/environments/environment'
 import {JobExperience} from '../../shared/models/dto/job-experience.dto'
 import {Education} from '../../shared/models/dto/education.dto'
+import {ResumeDataDto} from '../../shared/models/dto/resume-data.dto'
 
 const API_URL = `${environment.apiUrl}/about`
 
@@ -27,13 +28,7 @@ export class AboutService {
     return this.http.get<AboutDto>(API_URL)
   }
 
-  buildResume(body?: {
-    experiences: JobExperience[]
-    education: Education[]
-    technologies: string[]
-    interests: string[]
-    projects: string[]
-  }): Observable<Blob> {
+  buildResume(body: ResumeDataDto): Observable<Blob> {
     return this.http
       .post(`${API_URL}/resume/build`, body, {responseType: 'blob'})
       .pipe(
@@ -41,5 +36,15 @@ export class AboutService {
           return new Blob([resume], {type: 'application/pdf'})
         })
       )
+  }
+
+  getResumeData(): Observable<ResumeDataDto> {
+    return this.http.get<{
+      experiences: JobExperience[]
+      education: Education[]
+      technologies: string[]
+      interests: string[]
+      projects: string[]
+    }>(`${API_URL}/resume/data`)
   }
 }

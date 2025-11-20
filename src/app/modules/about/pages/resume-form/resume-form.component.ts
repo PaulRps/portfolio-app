@@ -25,6 +25,14 @@ export class ResumeFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Always initialize forms with defaults first so getters/templates don't access undefined groups
+    this.initForm()
+
+    this.aboutService.getResumeData().subscribe((data) => {
+      if (data) this.initializeFromData(data)
+    })
+  }
+  private initForm() {
     // Experience step: parent manages a FormArray of single-entry form groups
     this.experienceFormGroup = this._formBuilder.group({
       experiences: this._formBuilder.array([this.buildExperienceGroup()])
@@ -157,19 +165,113 @@ export class ResumeFormComponent implements OnInit {
       projects: this.projects.controls.map((c) => c.value),
       interests: this.interests.controls.map((c) => c.value)
     }
-    // For now just log the collected data. Replace with actual submit logic.
-    console.log('Resume form submitted', payload)
     this.aboutService.buildResume(<any>payload).subscribe((blob: Blob) => {
-      // const url = window.URL.createObjectURL(blob)
-      // const a = document.createElement('a')
-      // a.href = url
-      // a.download = 'custom-resume.pdf'
-      // a.click()
-      // window.URL.revokeObjectURL(url)
-
       const fileURL = window.URL.createObjectURL(blob)
       const opened = window.open(fileURL, '_blank')
-      // if (!opened) this.toastMessage('unblock popup to get the resume')
+    })
+  }
+
+  private initializeFromData(data: any) {
+    // Experiences
+    if (Array.isArray(data.experiences)) {
+      // clear current
+      while (this.experiences.length) {
+        this.experiences.removeAt(0)
+      }
+      data.experiences.forEach((exp: any) => {
+        const g = this.createExperienceGroup(exp)
+        this.experiences.push(g)
+      })
+    }
+
+    // Educations (accept both 'educations' and legacy 'education')
+    const educationList = Array.isArray(data.educations)
+      ? data.educations
+      : data.education
+    if (Array.isArray(educationList)) {
+      while (this.educations.length) {
+        this.educations.removeAt(0)
+      }
+      educationList.forEach((edu: any) => {
+        const g = this.createEducationGroup(edu)
+        this.educations.push(g)
+      })
+    }
+
+    // Technologies
+    if (Array.isArray(data.technologies)) {
+      while (this.technologies.length) {
+        this.technologies.removeAt(0)
+      }
+      data.technologies.forEach((t: any) =>
+        this.technologies.push(
+          this._formBuilder.control(t || '', Validators.required)
+        )
+      )
+    }
+
+    // Projects
+    if (Array.isArray(data.projects)) {
+      while (this.projects.length) {
+        this.projects.removeAt(0)
+      }
+      data.projects.forEach((p: any) =>
+        this.projects.push(
+          this._formBuilder.control(p || '', Validators.required)
+        )
+      )
+    }
+
+    // Interests
+    if (Array.isArray(data.interests)) {
+      while (this.interests.length) {
+        this.interests.removeAt(0)
+      }
+      data.interests.forEach((it: any) =>
+        this.interests.push(
+          this._formBuilder.control(it || '', Validators.required)
+        )
+      )
+    }
+  }
+
+  private createExperienceGroup(exp?: any): FormGroup {
+    const descArray =
+      exp && Array.isArray(exp.description) && exp.description.length
+        ? exp.description.map((d: any) =>
+            this._formBuilder.control(d || '', Validators.required)
+          )
+        : [this._formBuilder.control('', Validators.required)]
+
+    return this._formBuilder.group({
+      company: this._formBuilder.group({
+        name: [exp?.company?.name || '', Validators.required],
+        location: this._formBuilder.group({
+          city: [exp?.company?.location?.city || ''],
+          country: [exp?.company?.location?.country || '']
+        })
+      }),
+      role: [exp?.role || '', Validators.required],
+      beginAt: [exp?.beginAt || ''],
+      endAt: [exp?.endAt || ''],
+      description: this._formBuilder.array(descArray),
+      squad: [exp?.squad || '', Validators.required]
+    })
+  }
+
+  private createEducationGroup(edu?: any): FormGroup {
+    return this._formBuilder.group({
+      name: [edu?.name || '', Validators.required],
+      institution: this._formBuilder.group({
+        name: [edu?.institution?.name || '', Validators.required],
+        location: this._formBuilder.group({
+          city: [edu?.institution?.location?.city || ''],
+          country: [edu?.institution?.location?.country || '']
+        })
+      }),
+      beginAt: [edu?.beginAt || ''],
+      endAt: [edu?.endAt || ''],
+      description: [edu?.description || '']
     })
   }
 }

@@ -1,49 +1,60 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, OnDestroy} from '@angular/core'
 import {LoadingService} from './loading.service'
-import {MatSnackBar} from '@angular/material/snack-bar'
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar'
+import {Subscription, timer, of} from 'rxjs'
+import {distinctUntilChanged, switchMap, tap} from 'rxjs/operators'
 
 @Component({
   selector: 'app-loading-screen',
   templateUrl: './loading-screen.component.html',
   styleUrls: ['./loading-screen.component.scss']
 })
-export class LoadingScreenComponent implements OnInit {
+export class LoadingScreenComponent implements OnInit, OnDestroy {
   isLoading = this.loadingService.getLoading()
-  private timeoutId?: any
-  private snackRef: any
+  private sub?: Subscription
+  private snackRef?: MatSnackBarRef<any>
 
   constructor(
     private readonly loadingService: LoadingService,
     private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
-    this.isLoading.subscribe((loading) => {
-      if (loading) {
-        this.startTimeout()
-      } else {
-        this.stopTimeout()
-      }
-    })
+    // Show a friendly persistent snackbar only if loading lasts more than 5s.
+    // If loading stops before 5s the snackbar is never shown.
+    this.sub = this.isLoading
+      .pipe(
+        distinctUntilChanged(),
+        switchMap((loading) => {
+          if (loading) {
+            return timer(5000).pipe(tap(() => this.openPersistentSnack()))
+          }
+          // close immediately when loading stops
+          return of(null).pipe(tap(() => this.closeSnack()))
+        })
+      )
+      .subscribe()
   }
 
-  private toastMessage(msg: string) {
-    this.snackRef = this.snackBar.open(msg, 'close', {
+  private openPersistentSnack() {
+    // avoid opening multiple times
+    if (this.snackRef) return
+    const message =
+      'Sorry for the wait — server may be cold-starting. This may take a moment.'
+    this.snackRef = this.snackBar.open(message, 'Close', {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
-      duration: 3600 * 1000
+      panelClass: ['app-snackbar']
+      // no duration -> persistent until dismissed
     })
   }
 
-  private startTimeout() {
-    this.timeoutId = setTimeout(() => {
-      this.toastMessage(
-        'Sorry for make you wait, the api is hosted in a free server and it takes time to boot it. Stay here to see what i did.'
-      )
-    }, 5000)
+  private closeSnack() {
+    this.snackRef?.dismiss()
+    this.snackRef = undefined
   }
 
-  private stopTimeout() {
-    clearTimeout(this.timeoutId)
-    this.snackRef?.dismiss()
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe()
+    this.closeSnack()
   }
 }
