@@ -9,6 +9,10 @@ import {SocialMediasComponent} from './components/social-medias/social-medias.co
 import {ResumeFormComponent} from './pages/resume-form/resume-form.component'
 import {ReactiveFormsModule} from '@angular/forms'
 import {WorkExperienceComponent} from './components/work-experience/work-experience.component'
+import {TechnologiesComponent} from './components/technologies/technologies.component'
+import {ProjectsComponent} from './components/projects/projects.component'
+import {InterestsComponent} from './components/interests/interests.component'
+import {EducationComponent} from './components/education/education.component'
 import {ExperienceModule} from '../experience/experience.module'
 
 @NgModule({
@@ -17,7 +21,11 @@ import {ExperienceModule} from '../experience/experience.module'
     DownloadResumeComponent,
     SocialMediasComponent,
     ResumeFormComponent,
-    WorkExperienceComponent
+    WorkExperienceComponent,
+    TechnologiesComponent,
+    ProjectsComponent,
+    InterestsComponent,
+    EducationComponent
   ],
   imports: [
     CommonModule,

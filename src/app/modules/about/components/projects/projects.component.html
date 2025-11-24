@@ -1,0 +1,31 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="projects">
+    <div
+      *ngFor="let p of projects.controls; let i = index"
+      class="mb-4 flex items-start"
+    >
+      <mat-form-field class="flex-1 mr-2" appearance="fill">
+        <mat-label>Project</mat-label>
+        <textarea
+          matInput
+          [formControlName]="i"
+          placeholder="Project"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        color="warn"
+        type="button"
+        (click)="removeProject(i)"
+      >
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+    <div class="mb-4">
+      <button mat-button type="button" (click)="addProject()">
+        Add project
+      </button>
+    </div>
+  </div>
+</div>

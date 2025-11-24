@@ -1,0 +1,31 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="technologies">
+    <div
+      *ngFor="let t of technologies.controls; let i = index"
+      class="mb-2 flex items-center"
+    >
+      <mat-form-field class="flex-1 mr-2" appearance="fill">
+        <mat-label>Technology</mat-label>
+        <textarea
+          matInput
+          [formControlName]="i"
+          placeholder="Technology"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        color="warn"
+        type="button"
+        (click)="removeTechnology(i)"
+      >
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+    <div class="mb-4">
+      <button mat-button type="button" (click)="addTechnology()">
+        Add technology
+      </button>
+    </div>
+  </div>
+</div>

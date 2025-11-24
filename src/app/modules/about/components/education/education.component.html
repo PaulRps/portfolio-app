@@ -1,0 +1,44 @@
+<div [formGroup]="formGroup">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Degree or Course" />
+  </mat-form-field>
+
+  <div formGroupName="institution">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Institution</mat-label>
+      <input matInput formControlName="name" placeholder="Institution" />
+    </mat-form-field>
+    <div formGroupName="location" class="grid grid-cols-2 gap-2">
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" placeholder="City" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="country" placeholder="Country" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Begin At</mat-label>
+      <input matInput formControlName="beginAt" placeholder="YYYY" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>End At</mat-label>
+      <input matInput formControlName="endAt" placeholder="YYYY or Present" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      formControlName="description"
+      rows="3"
+      placeholder="Details"
+    ></textarea>
+  </mat-form-field>
+</div>

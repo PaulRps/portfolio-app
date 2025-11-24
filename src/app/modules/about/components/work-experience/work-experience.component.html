@@ -60,15 +60,21 @@
           class="w-full"
           *ngFor="let ctrl of description.controls; let i = index"
         >
-          <div class="flex items-center gap-2">
+          <div class="flex items-start gap-2">
             <mat-form-field class="flex-1" appearance="fill">
               <mat-label>Description</mat-label>
-              <input matInput [formControlName]="i" placeholder="Description" />
+              <textarea
+                matInput
+                [formControlName]="i"
+                placeholder="Description"
+                rows="3"
+              ></textarea>
             </mat-form-field>
             <button
               mat-icon-button
               color="warn"
               type="button"
+              aria-label="Remove description"
               (click)="removeDescription(i)"
             >
               <mat-icon>remove_circle</mat-icon>

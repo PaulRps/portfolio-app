@@ -11,9 +11,7 @@ export class JobComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    // console.log(this.jobExperience)
-  }
+  ngOnInit(): void {}
 
   formatJobTitle(): string {
     if (!this.jobExperience) {

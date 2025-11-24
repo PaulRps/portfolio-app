@@ -1,0 +1,31 @@
+<div [formGroup]="formGroup">
+  <div formArrayName="interests">
+    <div
+      *ngFor="let it of interests.controls; let i = index"
+      class="mb-2 flex items-center"
+    >
+      <mat-form-field class="flex-1 mr-2" appearance="fill">
+        <mat-label>Interest</mat-label>
+        <textarea
+          matInput
+          [formControlName]="i"
+          placeholder="Interest"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        color="warn"
+        type="button"
+        (click)="removeInterest(i)"
+      >
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+    <div class="mb-4">
+      <button mat-button type="button" (click)="addInterest()">
+        Add interest
+      </button>
+    </div>
+  </div>
+</div>
